@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title Adverts
+    meta content="width=device-width,initial-scale=1" name="viewport" /
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    = render partial: 'shared/navbar'
+    .container.py-3
+      .container.mb-5
+        - if notice
+          .alert.alert-success.my-3 role="alert" 
+            = notice
+        - elsif alert
+          .alert.alert-danger.my-3 role="alert" 
+            = alert
+
+        = yield
