@@ -13,6 +13,6 @@
     = f.label :description, class: "form-label"
     = f.text_area :description, class: "form-control"
   .form-group.my-2
-    = f.label :image, class: "form-label"
-    = f.text_field :image, class: "form-control"
+    = f.label :images, class: "form-label"
+    = f.file_field :images, multiple: true, class: "form-control"
   .actions = f.submit class: "btn btn-success my-2"

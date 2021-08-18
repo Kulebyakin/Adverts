@@ -29,4 +29,6 @@ class Advert < ApplicationRecord
       transitions from: :published, to: :archival
     end
   end
+
+  has_many_attached :images
 end

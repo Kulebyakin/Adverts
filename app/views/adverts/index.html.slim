@@ -5,7 +5,7 @@ table.table.table-striped
     tr
       th Title
       th Description
-      th Image
+      th Images
       th Status
       th
       th
@@ -16,7 +16,10 @@ table.table.table-striped
       tr
         td = advert.title
         td = advert.description
-        td = advert.image
+        td 
+          - advert.images.each do |image|
+            = image_tag image.variant(resize_to_limit: [300, 300]), class: "m-1"
+              
         td = advert.status
         td = link_to 'Show', advert
         td = link_to 'Edit', edit_advert_path(advert)

@@ -7,8 +7,8 @@ p
   = @advert.description
 
 p
-  strong Image:
-  = @advert.image
+  strong Images:
+  = image_tag @advert.images.first.variant(resize_to_limit: [300, 300])
 
 p
   strong Status:
