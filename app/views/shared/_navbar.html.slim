@@ -1,6 +1,6 @@
 nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
   .container-fluid
-    a.navbar-brand href="#"  Advert
+    = link_to "Advert", root_path, class: "navbar-brand"
     button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button" 
       span.navbar-toggler-icon
     #navbarSupportedContent.collapse.navbar-collapse
@@ -23,6 +23,13 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
               a.dropdown-item href="#"  Something else here
         li.nav-item
           a.nav-link.disabled aria-disabled="true" href="#" tabindex="-1"  Disabled
+
+      ul.navbar-nav.ml-auto.mb-2.mb-lg-0
+        li.nav-item
+          = link_to "Login", new_user_session_path, class: "nav-link"
+        li.nav-item
+          = link_to "Register", new_user_registration_path, class: "nav-link"
       form.d-flex
-        input.form-control.me-2 aria-label="Search" placeholder="Search" type="search" /
+        input.form-control.mx-2 aria-label="Search" placeholder="Search" type="search" /
         button.btn.btn-outline-success type="submit"  Search
+
