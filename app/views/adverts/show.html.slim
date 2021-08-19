@@ -1,17 +1,18 @@
 p
-  strong Title:
+  strong Title: 
   = @advert.title
 
 p
-  strong Description:
+  strong Description: 
   = @advert.description
 
 p
-  strong Images:
-  = image_tag @advert.images.first.variant(resize_to_limit: [300, 300])
+  strong Images: 
+  - @advert.images.each do |image|
+    = image_tag image.variant(resize_to_limit: [200, 200])
 
 p
-  strong Status:
+  strong Status: 
   = @advert.status
 
 => link_to 'Edit', edit_advert_path(@advert)
