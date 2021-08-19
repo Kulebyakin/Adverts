@@ -36,6 +36,7 @@ gem 'bootstrap', '~> 5.1.0'
 gem 'jquery-rails'
 
 gem 'devise'
+gem 'pundit'
 
 gem 'image_processing', '~> 1.2'
 gem "mini_magick"
