@@ -7,13 +7,13 @@ class AdvertsController < ApplicationController
 
 
   def my_adverts
-    @adverts = policy_scope(Advert.where(user_id: current_user.id).order(created_at: :desc))
+    @adverts = policy_scope(Advert.where(user_id: current_user.id))
     
   end
 
   # GET /adverts or /adverts.json
   def index
-    @adverts = policy_scope(Advert.order(created_at: :desc))
+    @adverts = policy_scope(Advert.where(status: :published))
   end
 
   # GET /adverts/1 or /adverts/1.json
