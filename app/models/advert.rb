@@ -1,4 +1,7 @@
 class Advert < ApplicationRecord
+  has_many_attached :images
+  belongs_to :user
+  
   include AASM
 
   aasm(:status) do
@@ -30,5 +33,4 @@ class Advert < ApplicationRecord
     end
   end
 
-  has_many_attached :images
 end
