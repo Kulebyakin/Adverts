@@ -2,9 +2,12 @@ class AdvertsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_advert, only: %i[ show edit update destroy ]
 
+  after_action :verify_authorized, except: :index
+  after_action :verify_policy_scoped, only: :index
+
   # GET /adverts or /adverts.json
   def index
-    @adverts = Advert.all
+    @adverts = policy_scope(Advert).reverse
   end
 
   # GET /adverts/1 or /adverts/1.json
@@ -14,6 +17,7 @@ class AdvertsController < ApplicationController
   # GET /adverts/new
   def new
     @advert = Advert.new
+    authorize @advert
   end
 
   # GET /adverts/1/edit
@@ -23,6 +27,7 @@ class AdvertsController < ApplicationController
   # POST /adverts or /adverts.json
   def create
     @advert = Advert.new(advert_params)
+    authorize @advert
 
     respond_to do |format|
       if @advert.save
@@ -61,10 +66,11 @@ class AdvertsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_advert
       @advert = Advert.find(params[:id])
+      authorize @advert
     end
 
     # Only allow a list of trusted parameters through.
     def advert_params
-      params.require(:advert).permit(:title, :description, :status, images: [])
+      params.require(:advert).permit(:title, :description, :status, :user_id, images: [])
     end
 end

@@ -4,8 +4,8 @@ table.table.table-striped
   thead
     tr
       th Title
-      th Description
       th Images
+      th Description
       th Status
       th
       th
@@ -15,16 +15,16 @@ table.table.table-striped
     - @adverts.each do |advert|
       tr
         td = advert.title
-        td = advert.description
         td 
           - advert.images.each do |image|
             = image_tag image.variant(resize_to_limit: [200, 200]), class: "m-1"
+        td = advert.description
               
         td = advert.status
-        td = link_to 'Show', advert
-        td = link_to 'Edit', edit_advert_path(advert)
-        td = link_to 'Destroy', advert, data: { confirm: 'Are you sure?' }, method: :delete
+        td = link_to 'Show', advert if policy(advert).show?
+        td = link_to 'Edit', edit_advert_path(advert) if policy(advert).edit?
+        td = link_to 'Destroy', advert, data: { confirm: 'Are you sure?' }, method: :delete if policy(advert).destroy?
 
 br
 
-= link_to 'New Advert', new_advert_path, class: "btn btn-success"
+= link_to 'New Advert', new_advert_path, class: "btn btn-success" if current_user

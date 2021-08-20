@@ -15,6 +15,6 @@ p
   strong Status: 
   = @advert.status
 
-=> link_to 'Edit', edit_advert_path(@advert)
+=> link_to 'Edit', edit_advert_path(@advert) if policy(@advert).edit?
 '|
 =< link_to 'Back', adverts_path
