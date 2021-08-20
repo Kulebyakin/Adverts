@@ -14,17 +14,13 @@ table.table.table-striped
   tbody
     - @adverts.each do |advert|
       tr
-        td = advert.title
+        td = link_to advert.title, advert if policy(advert).show?
         td 
           - advert.images.each do |image|
             = image_tag image.variant(resize_to_limit: [200, 200]), class: "m-1"
         td = advert.description
               
         td = advert.status
-        td = link_to 'Show', advert if policy(advert).show?
-        td = link_to 'Edit', edit_advert_path(advert) if policy(advert).edit?
-        td = link_to 'Destroy', advert, data: { confirm: 'Are you sure?' }, method: :delete if policy(advert).destroy?
-
-br
-
-= link_to 'New Advert', new_advert_path, class: "btn btn-success" if current_user
+        / td = link_to 'Show', advert if policy(advert).show?
+        td = link_to image_tag('/pencil-fill.svg', alt: 'Edit advert'), edit_advert_path(advert) if policy(advert).edit?
+        td = link_to image_tag('/trash-fill.svg', alt: 'Delete advert'), advert, data: { confirm: 'Are you sure?' }, method: :delete if policy(advert).destroy?

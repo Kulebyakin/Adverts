@@ -8,14 +8,11 @@ table.table.table-striped
       th Description
       th Status
       th User
-      th
-      th
-      th
 
   tbody
     - @adverts.each do |advert|
       tr
-        td = advert.title
+        td = link_to advert.title, advert if policy(advert).show?
         td 
           - advert.images.each do |image|
             = image_tag image.variant(resize_to_limit: [200, 200]), class: "m-1"
@@ -23,10 +20,6 @@ table.table.table-striped
               
         td = advert.status
         td = advert.user.email
-        td = link_to 'Show', advert if policy(advert).show?
-        td = link_to 'Edit', edit_advert_path(advert) if policy(advert).edit?
-        td = link_to 'Destroy', advert, data: { confirm: 'Are you sure?' }, method: :delete if policy(advert).destroy?
-
-br
-
-= link_to 'New Advert', new_advert_path, class: "btn btn-success" if current_user
+        / td = link_to 'Show', advert if policy(advert).show?
+        / td = link_to 'Edit', edit_advert_path(advert) if policy(advert).edit?
+        / td = link_to 'Destroy', advert, data: { confirm: 'Are you sure?' }, method: :delete if policy(advert).destroy?
