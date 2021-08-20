@@ -16,6 +16,9 @@ class Advert < ApplicationRecord
 
     event :moderate do
       transitions from: :draft, to: :new
+      transitions from: :published, to: :new
+      transitions from: :accepted, to: :new
+      transitions from: :rejected, to: :new
     end
 
     event :reject do

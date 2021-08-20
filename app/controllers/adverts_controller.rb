@@ -58,6 +58,9 @@ class AdvertsController < ApplicationController
 
   # PATCH/PUT /adverts/1 or /adverts/1.json
   def update
+    if @advert.published? || @advert.accepted? || @advert.rejected?
+      @advert.moderate
+    end
     respond_to do |format|
       if @advert.update(advert_params)
         format.html { redirect_to @advert, notice: "Advert was successfully updated." }

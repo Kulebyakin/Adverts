@@ -5,6 +5,9 @@
       ul
         - @advert.errors.full_messages.each do |message|
           li = message
+          
+  - if @advert.published?
+    p if you update published advert, then it will be sending on moderate again!
 
   = f.hidden_field :user_id, value: current_user.id
   .form-group.my-2
