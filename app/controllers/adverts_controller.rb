@@ -1,6 +1,6 @@
 class AdvertsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show, my_adverts]
-  before_action :set_advert, only: %i[ show edit update destroy ]
+  before_action :set_advert, only: %i[ show edit update destroy moderate ]
 
   after_action :verify_authorized, except: %i[index my_adverts]
   after_action :verify_policy_scoped, only: %i[index my_adverts]
@@ -8,7 +8,17 @@ class AdvertsController < ApplicationController
 
   def my_adverts
     @adverts = policy_scope(Advert.where(user_id: current_user.id))
-    
+  end
+
+  def moderate
+    @advert.moderate
+    authorize @advert
+
+    if @advert.save
+      redirect_to my_adverts_path, notice: "Advert was successfully sent to moderate."
+    else
+      render :my_adverts, status: :unprocessable_entity
+    end
   end
 
   # GET /adverts or /adverts.json

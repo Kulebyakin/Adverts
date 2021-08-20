@@ -17,6 +17,10 @@ class AdvertPolicy < ApplicationPolicy
     user_is_owner_of_record? || @record.published?
   end
 
+  def moderate?
+    user_is_owner_of_record?
+  end
+
   def update?
     user_is_owner_of_record?
   end
