@@ -6,7 +6,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
     #navbarSupportedContent.collapse.navbar-collapse
       ul.navbar-nav.me-auto.mb-2.mb-lg-0
         li.nav-item
-          a.nav-link.active aria-current="page" href="#"  Home
+          = link_to "All adverts", adverts_path, class: "nav-link"
         li.nav-item
           a.nav-link href="#"  Link
         li.nav-item.dropdown
@@ -28,6 +28,8 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
         - if current_user
           li.nav-item
             = link_to current_user.email, edit_user_registration_path, class: "nav-link"
+          li.nav-item
+            = link_to "My adverts", my_adverts_path, class: "nav-link"
           li.nav-item
             = link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link"
         - else

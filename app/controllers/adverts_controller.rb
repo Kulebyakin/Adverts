@@ -1,13 +1,19 @@
 class AdvertsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, except: %i[index show, my_adverts]
   before_action :set_advert, only: %i[ show edit update destroy ]
 
-  after_action :verify_authorized, except: :index
-  after_action :verify_policy_scoped, only: :index
+  after_action :verify_authorized, except: %i[index my_adverts]
+  after_action :verify_policy_scoped, only: %i[index my_adverts]
+
+
+  def my_adverts
+    @adverts = policy_scope(Advert.where(user_id: current_user.id).order(created_at: :desc))
+    
+  end
 
   # GET /adverts or /adverts.json
   def index
-    @adverts = policy_scope(Advert).reverse
+    @adverts = policy_scope(Advert.order(created_at: :desc))
   end
 
   # GET /adverts/1 or /adverts/1.json
