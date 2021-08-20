@@ -6,11 +6,11 @@ class AdvertPolicy < ApplicationPolicy
   end
 
   def new?
-    true
+    user_is_not_an_admin?
   end
 
   def create?
-    true
+    user_is_not_an_admin?
   end
 
   def show?
@@ -18,11 +18,11 @@ class AdvertPolicy < ApplicationPolicy
   end
 
   def moderate?
-    user_is_owner_of_record?
+    user_is_owner_of_record? && user_is_not_an_admin?
   end
 
   def update?
-    user_is_owner_of_record?
+    user_is_owner_of_record? && user_is_not_an_admin?
   end
 
   def destroy?
@@ -30,6 +30,10 @@ class AdvertPolicy < ApplicationPolicy
   end
 
   private
+
+  def user_is_not_an_admin?
+    user.role.name != 'admin'
+  end
 
   def user_is_owner_of_record?
     user == @record.user
