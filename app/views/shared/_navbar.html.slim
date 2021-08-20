@@ -29,6 +29,8 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
           li.nav-item
             = link_to current_user.email, edit_user_registration_path, class: "nav-link"
           li.nav-item
+            = link_to 'New Advert', new_advert_path, class: "nav-link"
+          li.nav-item
             = link_to "My adverts", my_adverts_path, class: "nav-link"
           li.nav-item
             = link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link"
