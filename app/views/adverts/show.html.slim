@@ -1,7 +1,7 @@
 h3.mb-4 = @advert.title
 
 - @advert.images.each do |image|
-  span.me-3 = image_tag image.variant(resize_to_limit: [200, 200])
+  span.me-3 = image_tag image.variant(resize_to_limit: [700, 700]), class: 'mb-3'
 
 p.py-4
   strong Description: 
