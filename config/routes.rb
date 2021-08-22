@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    root to: 'adverts#index'
+    get 'adverts/:id/accept', to: 'adverts#accept', as: :accept_advert
+    get 'adverts/:id/reject', to: 'adverts#reject', as: :reject_advert
+    resources :adverts
+  end
+
   devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', registration: 'register' }
 
   root to: 'adverts#index'
