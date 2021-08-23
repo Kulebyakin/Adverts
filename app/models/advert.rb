@@ -2,7 +2,7 @@ class Advert < ApplicationRecord
   has_many_attached :images
   belongs_to :user
 
-  default_scope { order(created_at: :desc) }
+  default_scope { order(updated_at: :desc) }
   
   include AASM
 
