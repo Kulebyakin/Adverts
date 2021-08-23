@@ -10,4 +10,25 @@
   Role.find_or_create_by({name: role})
 end
 
-User.create email: "admin@test.com", password: "password", role: Role.find_by_name(:admin)
+User.create email: "admin@test.com", password: "123qwe", role: Role.find_by_name(:admin)
+
+(1..20).each do |id|
+  User.create!(
+      email: "user#{id + 1}@test.com",
+      password: "123qwe", 
+      password_confirmation: "123qwe",
+      role: Role.find_by_name(:user)
+  )
+end
+
+(1..20).each do |id|
+  Advert.create!(
+      user_id: rand(2..20), 
+      title: Faker::Device.model_name, 
+      status: :published,
+      description: Faker::Lorem.paragraph(
+        sentence_count: 2, 
+        supplemental: true, 
+        random_sentences_to_add: 4)
+  )
+end
