@@ -1,5 +1,5 @@
 class Admin::AdvertsController < Admin::BaseController
-  before_action :set_advert, only: %i[ show edit update destroy accept reject ]
+  before_action :set_advert, except: :index
 
   def accept
     @advert.accept

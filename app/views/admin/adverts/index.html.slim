@@ -1,9 +1,9 @@
 h3.my-2 New adverts
 
-- if @adverts
+- if !@adverts.any?
   p There is no new adverts to moderate.
 - else
-  table.table.table-striped
+  table.table
     thead
       tr
         th Title
@@ -19,13 +19,13 @@ h3.my-2 New adverts
           td = link_to advert.title, admin_advert_path(advert)
           td 
             - advert.images.each do |image|
-              = image_tag image.variant(resize_to_limit: [200, 200]), class: "m-1"
+              = image_tag image.variant(resize_to_limit: [200, 200])
           td = advert.description
                 
           td = advert.status
           td = advert.user.email
           td 
-            = link_to 'Accept', admin_accept_advert_path(advert), class: "btn btn-success me-2"
+            = link_to 'Accept', admin_accept_advert_path(advert), class: "btn btn-success me-2 mb-2"
             = link_to 'Reject', admin_reject_advert_path(advert), class: "btn btn-danger"
 
           / td = link_to 'Show', advert if policy(advert).show?
