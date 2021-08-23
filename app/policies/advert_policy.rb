@@ -21,6 +21,10 @@ class AdvertPolicy < ApplicationPolicy
     user_is_owner_of_record? && user_is_not_an_admin?
   end
 
+  def publish?
+    user_is_owner_of_record? && user_is_not_an_admin?
+  end
+
   def update?
     user_is_owner_of_record? && user_is_not_an_admin?
   end

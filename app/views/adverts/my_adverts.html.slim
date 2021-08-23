@@ -21,5 +21,9 @@ table.table.table-striped
               
         td = advert.status
         / td = link_to 'Show', advert if policy(advert).show?
-        td = link_to image_tag('/pencil-fill.svg', alt: 'Edit advert'), edit_advert_path(advert) if policy(advert).edit?
-        td = link_to image_tag('/trash-fill.svg', alt: 'Delete advert'), advert, data: { confirm: 'Are you sure?' }, method: :delete if policy(advert).destroy?
+        td 
+          = link_to image_tag('/pencil-fill.svg', alt: 'Edit advert'), edit_advert_path(advert), class: "me-2" if policy(advert).edit?
+          = link_to image_tag('/trash-fill.svg', alt: 'Delete advert'), advert, data: { confirm: 'Are you sure?' }, method: :delete, class: "me-2" if policy(advert).destroy?
+          br/
+          = link_to 'Send to moderate', moderate_advert_path(advert), class: "btn btn-success my-2" if policy(advert).moderate? && advert.draft?
+          = link_to 'Publish', publish_advert_path(advert), class: "btn btn-success my-2" if policy(advert).publish? && advert.archival?

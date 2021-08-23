@@ -31,6 +31,7 @@ class Advert < ApplicationRecord
 
     event :publish do
       transitions from: :accepted, to: :published
+      transitions from: :archival, to: :published
     end
 
     event :archive do

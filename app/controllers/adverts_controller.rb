@@ -1,6 +1,6 @@
 class AdvertsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show, my_adverts]
-  before_action :set_advert, only: %i[ show edit update destroy moderate ]
+  before_action :set_advert, only: %i[ show edit update destroy moderate publish ]
 
   after_action :verify_authorized, except: %i[index my_adverts]
   after_action :verify_policy_scoped, only: %i[index my_adverts]
@@ -16,6 +16,17 @@ class AdvertsController < ApplicationController
 
     if @advert.save
       redirect_to my_adverts_path, notice: "Advert was successfully sent to moderate."
+    else
+      render :my_adverts, status: :unprocessable_entity
+    end
+  end
+
+  def publish
+    @advert.publish
+    authorize @advert
+
+    if @advert.save
+      redirect_to my_adverts_path, notice: "Advert was successfully publish."
     else
       render :my_adverts, status: :unprocessable_entity
     end
