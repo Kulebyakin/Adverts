@@ -1,30 +1,33 @@
-h3.my-2 Listing adverts
+h3.my-2 New adverts
 
-table.table.table-striped
-  thead
-    tr
-      th Title
-      th Images
-      th Description
-      th Status
-      th User
-      th
-
-  tbody
-    - @adverts.each do |advert|
+- if @adverts
+  p There is no new adverts to moderate.
+- else
+  table.table.table-striped
+    thead
       tr
-        td = link_to advert.title, admin_advert_path(advert)
-        td 
-          - advert.images.each do |image|
-            = image_tag image.variant(resize_to_limit: [200, 200]), class: "m-1"
-        td = advert.description
-              
-        td = advert.status
-        td = advert.user.email
-        td 
-          = link_to 'Accept', admin_accept_advert_path(advert), class: "btn btn-success me-2"
-          = link_to 'Reject', admin_reject_advert_path(advert), class: "btn btn-danger"
+        th Title
+        th Images
+        th Description
+        th Status
+        th User
+        th
 
-        / td = link_to 'Show', advert if policy(advert).show?
-        / td = link_to 'Edit', edit_advert_path(advert) if policy(advert).edit?
-        / td = link_to 'Destroy', advert, data: { confirm: 'Are you sure?' }, method: :delete if policy(advert).destroy?
+    tbody
+      - @adverts.each do |advert|
+        tr
+          td = link_to advert.title, admin_advert_path(advert)
+          td 
+            - advert.images.each do |image|
+              = image_tag image.variant(resize_to_limit: [200, 200]), class: "m-1"
+          td = advert.description
+                
+          td = advert.status
+          td = advert.user.email
+          td 
+            = link_to 'Accept', admin_accept_advert_path(advert), class: "btn btn-success me-2"
+            = link_to 'Reject', admin_reject_advert_path(advert), class: "btn btn-danger"
+
+          / td = link_to 'Show', advert if policy(advert).show?
+          / td = link_to 'Edit', edit_advert_path(advert) if policy(advert).edit?
+          / td = link_to 'Destroy', advert, data: { confirm: 'Are you sure?' }, method: :delete if policy(advert).destroy?
