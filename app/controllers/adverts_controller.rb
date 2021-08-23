@@ -1,5 +1,5 @@
 class AdvertsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show, my_adverts]
+  before_action :authenticate_user!, except: %i[ index show ]
   before_action :set_advert, only: %i[ show edit update destroy moderate publish ]
 
   after_action :verify_authorized, except: %i[index my_adverts]
