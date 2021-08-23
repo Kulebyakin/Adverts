@@ -23,6 +23,13 @@
 # set :bundle_command, 'bundle exec'
 set :environment, "development"
 set :output, "log/cron.log"
+
 every :day, at: '00:00 am' do
   runner "Cron.publish_all_accepted_adverts"
 end
+
+every :day, at: '23:50 am' do
+  runner "Cron.archive_all_published_more_than_3_days_ago_adverts"
+end
+
+
