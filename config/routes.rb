@@ -3,7 +3,8 @@ Rails.application.routes.draw do
     root to: 'adverts#index'
     get 'adverts/:id/accept', to: 'adverts#accept', as: :accept_advert
     get 'adverts/:id/reject', to: 'adverts#reject', as: :reject_advert
-    resources :adverts
+    resources :adverts, only: %i[ index show ]
+    resources :users, except: :show
   end
 
   devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', registration: 'register' }

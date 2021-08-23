@@ -1,0 +1,21 @@
+h3.my-2 Users
+
+= link_to "New user", new_admin_user_path, class: "btn btn-success my-2"
+
+table.table.table-striped
+  thead
+    tr
+      th Email
+      th Role
+      th Password
+      th
+
+  tbody
+    - @users.each do |user|
+      tr
+        td = user.email
+        td = user.role.name
+        td = user.password
+        td 
+          = link_to image_tag('/pencil-fill.svg', alt: 'Edit user'), edit_admin_user_path(user), class: "me-2" if user != current_user
+          = link_to image_tag('/trash-fill.svg', alt: 'Delete advert'), admin_user_path(user), data: { confirm: 'Are you sure?' }, method: :delete if user != current_user
