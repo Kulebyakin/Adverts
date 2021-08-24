@@ -21,14 +21,15 @@ User.create email: "admin@test.com", password: "123qwe", role: Role.find_by_name
   )
 end
 
-(1..20).each do |id|
+(1..50).each do |id|
   Advert.create!(
       user_id: rand(2..20), 
-      title: Faker::Device.model_name, 
+      title: Faker::Device.unique.model_name, 
       status: :published,
-      description: Faker::Lorem.paragraph(
-        sentence_count: 2, 
+      description: Faker::Hipster.paragraph(
+        sentence_count: 4, 
         supplemental: true, 
-        random_sentences_to_add: 4)
+        random_sentences_to_add: 4
+      )
   )
 end
