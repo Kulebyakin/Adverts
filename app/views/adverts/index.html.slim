@@ -1,25 +1,16 @@
 h3.my-2 Listing adverts
-
-table.table.table-striped
-  thead
-    tr
-      th Title
-      th Images
-      th Description
-      th Status
-      th User
-
-  tbody
+.row
+  .col-md-3 
+    p categories
+  
+  .col-md-9
     - @adverts.each do |advert|
-      tr
-        td = link_to advert.title, advert if policy(advert).show?
-        td 
-          - advert.images.each do |image|
-            = image_tag image.variant(resize_to_limit: [200, 200]), class: "m-1"
-        td = advert.description
-              
-        td = advert.status
-        td = advert.user.email
-        / td = link_to 'Show', advert if policy(advert).show?
-        / td = link_to 'Edit', edit_advert_path(advert) if policy(advert).edit?
-        / td = link_to 'Destroy', advert, data: { confirm: 'Are you sure?' }, method: :delete if policy(advert).destroy?
+      .border.my-3.bg-light
+        .row.m-3
+          .col-md-3.p-1
+            = image_tag advert.images.first.variant(resize_to_fill: [200, 200]) if advert.images.any?
+          .col-md-9
+            .m-2 = link_to advert.title, advert, class: "h5 text-decoration-none" if policy(advert).show?
+            .m-2 = advert.description
+            .m-2 = advert.status
+            .m-2 = advert.user.email

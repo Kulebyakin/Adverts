@@ -1,17 +1,19 @@
 h3.mb-4 = @advert.title
 
-- @advert.images.each do |image|
-  span.me-3 = image_tag image.variant(resize_to_limit: [700, 700]), class: 'mb-3'
+.row 
+  .col-md-4
+    - @advert.images.each do |image|
+      span.me-3 = image_tag image.variant(resize_to_limit: [400, 400]), class: 'mb-3'
+  .col-md-8
+    p.mb-4
+      strong Description: 
+      = @advert.description
 
-p.py-4
-  strong Description: 
-  = @advert.description
+    p
+      strong Status: 
+      = @advert.status
 
-p
-  strong Status: 
-  = @advert.status
-
-= link_to 'Edit', edit_advert_path(@advert), class: "btn btn-secondary me-2" if policy(@advert).edit?
-= link_to 'Send to moderate', moderate_advert_path, class: "btn btn-success me-2" if policy(@advert).moderate? && @advert.draft?
-= link_to 'Publish', publish_advert_path, class: "btn btn-success me-2" if policy(@advert).publish? && @advert.archival?
-.my-2 = link_to 'Back', adverts_path, class: "btn btn-secondary"
+    = link_to 'Edit', edit_advert_path(@advert), class: "btn btn-secondary me-2" if policy(@advert).edit?
+    = link_to 'Send to moderate', moderate_advert_path, class: "btn btn-success me-2" if policy(@advert).moderate? && @advert.draft?
+    = link_to 'Publish', publish_advert_path, class: "btn btn-success me-2" if policy(@advert).publish? && @advert.archival?
+    .my-2 = link_to 'Back', adverts_path, class: "btn btn-secondary"

@@ -7,22 +7,22 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
       ul.navbar-nav.me-auto.mb-2.mb-lg-0
         li.nav-item
           = link_to "All adverts", adverts_path, class: "nav-link"
-        li.nav-item
-          a.nav-link href="#"  Link
-        li.nav-item.dropdown
-          a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" href="#" role="button" 
-            | Dropdown
-          ul.dropdown-menu aria-labelledby="navbarDropdown" 
-            li
-              a.dropdown-item href="#"  Action
-            li
-              a.dropdown-item href="#"  Another action
-            li
-              hr.dropdown-divider/
-            li
-              a.dropdown-item href="#"  Something else here
-        li.nav-item
-          a.nav-link.disabled aria-disabled="true" href="#" tabindex="-1"  Disabled
+        / li.nav-item
+        /   a.nav-link href="#"  Link
+        / li.nav-item.dropdown
+        /   a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" href="#" role="button" 
+        /     | Dropdown
+        /   ul.dropdown-menu aria-labelledby="navbarDropdown" 
+        /     li
+        /       a.dropdown-item href="#"  Action
+        /     li
+        /       a.dropdown-item href="#"  Another action
+        /     li
+        /       hr.dropdown-divider/
+        /     li
+        /       a.dropdown-item href="#"  Something else here
+        / li.nav-item
+        /   a.nav-link.disabled aria-disabled="true" href="#" tabindex="-1"  Disabled
 
       ul.navbar-nav.ml-auto.mb-2.mb-lg-0
         - if current_user
@@ -43,7 +43,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
             = link_to "Login", new_user_session_path, class: "nav-link"
           li.nav-item
             = link_to "Register", new_user_registration_path, class: "nav-link"
-      form.d-flex
-        input.form-control.mx-2 aria-label="Search" placeholder="Search" type="search" /
-        button.btn.btn-outline-success type="submit"  Search
+      / form.d-flex
+      /   input.form-control.mx-2 aria-label="Search" placeholder="Search" type="search" /
+      /   button.btn.btn-outline-success type="submit"  Search
 
