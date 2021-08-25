@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get 'adverts/:id/reject', to: 'adverts#reject', as: :reject_advert
     resources :adverts, only: %i[ index show ]
     resources :users, except: :show
+    resources :categories, except: :show
   end
 
   devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', registration: 'register' }
