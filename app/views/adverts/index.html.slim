@@ -1,7 +1,9 @@
 h3.my-2 Listing adverts
 .row
-  .col-md-3 
-    p categories
+  .col-md-3
+    - if @categories.any?
+      - @categories.each do |category|
+        p = category.title
   
   .col-md-9
     - @adverts.each do |advert|
