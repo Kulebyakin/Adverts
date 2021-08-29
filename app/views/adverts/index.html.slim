@@ -1,9 +1,9 @@
 h3.my-2 Listing adverts
 .row
   .col-md-3
-    - if @categories.any?
+    - if @categories.present?
       - @categories.each do |category|
-        p = category.title
+        div = link_to category.title, category_path(category)
   
   .col-md-9
     - @adverts.each do |advert|
