@@ -1,6 +1,8 @@
 class Advert < ApplicationRecord
   has_many_attached :images
   belongs_to :user
+  has_many :categorisation
+  has_many :categories, through: :categorisation
 
   default_scope { order(updated_at: :desc) }
   
