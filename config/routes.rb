@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   root to: 'adverts#index'
   get 'adverts/my_adverts', to: 'adverts#my_adverts', as: :my_adverts
   resources :adverts
+  resources :categories, only: :show
   get 'adverts/:id/moderate', to: 'adverts#moderate', as: :moderate_advert
   get 'adverts/:id/publish', to: 'adverts#publish', as: :publish_advert
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
