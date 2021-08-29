@@ -12,6 +12,9 @@ h3.mb-4 = @advert.title
     p
       strong Status: 
       = @advert.status
+    p
+      strong Category: 
+      = @advert.categories.pick(:title)
 
     = link_to 'Edit', edit_advert_path(@advert), class: "btn btn-secondary me-2" if policy(@advert).edit?
     = link_to 'Send to moderate', moderate_advert_path, class: "btn btn-success me-2" if policy(@advert).moderate? && @advert.draft?
