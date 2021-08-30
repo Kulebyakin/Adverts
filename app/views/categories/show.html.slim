@@ -1,2 +1,33 @@
-h1 Categories#show
-p Find me in app/views/categories/show.html.slim
+h3.my-2 = @category.title.capitalize
+.row
+  .col-md-3
+    ul.list-group
+      - @parent_categories.each do |category|
+        - if category == @category
+          = link_to category.title, category_path(category), class: "list-group-item list-group-item-action active"
+          - @subcategories.each do |cat|
+            = link_to cat.title, category_path(cat), class: "list-group-item list-group-item-action ps-5"
+        - elsif @category.parent_category == category
+          = link_to category.title, category_path(category), class: "list-group-item list-group-item-action"
+          - @subcategories.each do |cat|
+            - if cat == @category
+              = link_to cat.title, category_path(cat), class: "list-group-item list-group-item-action active ps-5"
+            - else 
+              = link_to cat.title, category_path(cat), class: "list-group-item list-group-item-action ps-5"
+        - else
+          = link_to category.title, category_path(category), class: "list-group-item list-group-item-action"
+       
+  .col-md-9
+    - @adverts.each do |advert|
+      .border.my-3.bg-light
+        .row.m-3
+          .col-md-3.p-1
+            = image_tag advert.images.first.variant(resize_to_fill: [200, 200]) if advert.images.any?
+          .col-md-9
+            .m-2 = link_to advert.title, advert, class: "h5 text-decoration-none" if policy(advert).show?
+            .m-2 = advert.description
+            .m-2 = advert.status
+            .m-2 = advert.user.email
+            .m-2 
+              => advert.categories.first.parent_category.title
+              = advert.categories.pick(:title)
