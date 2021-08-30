@@ -35,7 +35,7 @@ class AdvertsController < ApplicationController
   # GET /adverts or /adverts.json
   def index
     @adverts = policy_scope(Advert.where(status: :published))
-    @categories = Category.where.not(parent_category_id: nil)
+    @parent_categories = Category.where(parent_category: nil)
   end
 
   # GET /adverts/1 or /adverts/1.json
