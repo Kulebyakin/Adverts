@@ -4,7 +4,7 @@ class Advert < ApplicationRecord
   has_many :categorisation
   has_many :categories, through: :categorisation
 
-  default_scope { order(updated_at: :desc) }
+  default_scope { order(id: :desc) }
   
   include AASM
 
