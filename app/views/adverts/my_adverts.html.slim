@@ -1,13 +1,13 @@
 h3.my-2 My adverts
 
-table.table.table-striped
+table.table.table-hover
   thead
     tr
       th Title
       th Images
       th Description
       th Status
-      th
+      th Category
       th
 
   tbody
@@ -20,6 +20,7 @@ table.table.table-striped
         td = advert.description
               
         td = advert.status
+        td = advert.categories.pick(:title)
         / td = link_to 'Show', advert if policy(advert).show?
         td 
           = link_to image_tag('/pencil-fill.svg', alt: 'Edit advert'), edit_advert_path(advert), class: "me-2" if policy(advert).edit?
