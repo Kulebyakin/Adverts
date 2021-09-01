@@ -4,6 +4,8 @@ class Advert < ApplicationRecord
   has_many :categorisation, dependent: :destroy
   has_many :categories, through: :categorisation
 
+  paginates_per 15
+
   default_scope { order(updated_at: :desc) }
   
   include AASM
