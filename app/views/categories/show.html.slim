@@ -18,6 +18,7 @@
        
   .col-md-9
     h3.mb-3.ms-3 = @category.title.capitalize
+    = paginate @adverts, theme: 'bootstrap-5'
     - @adverts.each do |advert|
       .border.mb-3.bg-light
         .row.m-3
@@ -31,3 +32,5 @@
             .m-2 
               => advert.categories.first.parent_category.title
               = advert.categories.pick(:title)
+    
+    = paginate @adverts, theme: 'bootstrap-5'
