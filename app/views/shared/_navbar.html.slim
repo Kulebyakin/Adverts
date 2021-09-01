@@ -1,10 +1,10 @@
-nav.navbar.navbar-expand-lg.navbar-light.bg-light
-  .container-fluid
+nav.navbar.navbar-expand-md.navbar-light.bg-light
+  .container
     = link_to "Adverts", root_path, class: "navbar-brand"
     button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button" 
       span.navbar-toggler-icon
     #navbarSupportedContent.collapse.navbar-collapse
-      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+      ul.navbar-nav.me-auto.mb-lg-0
         li.nav-item
           = link_to "All adverts", adverts_path, class: "nav-link"
         / li.nav-item
@@ -24,7 +24,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
         / li.nav-item
         /   a.nav-link.disabled aria-disabled="true" href="#" tabindex="-1"  Disabled
 
-      ul.navbar-nav.ml-auto.mb-2.mb-lg-0
+      ul.navbar-nav.ml-auto.mb-lg-0
         - if current_user
           li.nav-item
             = link_to current_user.email, edit_user_registration_path, class: "nav-link"
