@@ -31,18 +31,16 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem "slim-rails"
 gem 'aasm'
 gem 'after_commit_everywhere', '~> 1.0'
-
 gem 'bootstrap', '~> 5.1.0'
 gem 'jquery-rails'
-
 gem 'devise'
 gem 'pundit'
-
 gem 'image_processing', '~> 1.2'
 gem "mini_magick"
-
 gem 'whenever', require: false
 gem 'faker'
+gem 'kaminari'
+gem 'bootstrap5-kaminari-views'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
