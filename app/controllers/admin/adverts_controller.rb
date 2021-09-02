@@ -22,11 +22,11 @@ class Admin::AdvertsController < Admin::BaseController
   end
 
   def index
-    @adverts = Advert.all
+    @adverts = Advert.page(params[:page])
   end
 
   def moderate
-    @adverts = Advert.where(status: :new)
+    @adverts = Advert.where(status: :new).page(params[:page])
     render "index"
   end
 

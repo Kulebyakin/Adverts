@@ -3,6 +3,7 @@ h3.my-2 New adverts
 - if !@adverts.any?
   p There is no new adverts to moderate.
 - else
+  = paginate @adverts, theme: 'bootstrap-5'
   table.table
     thead
       tr
@@ -27,6 +28,4 @@ h3.my-2 New adverts
               = link_to 'Accept', admin_accept_advert_path(advert), class: "btn btn-success me-2 mb-2"
               = link_to 'Reject', admin_reject_advert_path(advert), class: "btn btn-danger"
 
-          / td = link_to 'Show', advert if policy(advert).show?
-          / td = link_to 'Edit', edit_advert_path(advert) if policy(advert).edit?
-          / td = link_to 'Destroy', advert, data: { confirm: 'Are you sure?' }, method: :delete if policy(advert).destroy?
+  = paginate @adverts, theme: 'bootstrap-5'
