@@ -1,5 +1,5 @@
 class Admin::AdvertsController < Admin::BaseController
-  before_action :set_advert, except: :index
+  before_action :set_advert, except: %i[ index moderate ]
 
   def accept
     @advert.accept
@@ -22,7 +22,12 @@ class Admin::AdvertsController < Admin::BaseController
   end
 
   def index
+    @adverts = Advert.all
+  end
+
+  def moderate
     @adverts = Advert.where(status: :new)
+    render "index"
   end
 
   def show
