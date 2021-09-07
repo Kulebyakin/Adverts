@@ -1,0 +1,17 @@
+h3.my-2 Hashtags
+
+= link_to "New hashtag", new_admin_hashtag_path, class: "btn btn-success my-2"
+
+table.table.table-striped
+  thead
+    tr
+      th Title
+      th
+
+  tbody
+    - @hashtags.each do |hashtag|
+      tr
+        td = hashtag.title
+        td 
+          = link_to image_tag('/pencil-fill.svg', alt: 'Edit hashtag'), edit_admin_hashtag_path(hashtag), class: "me-2"
+          = link_to image_tag('/trash-fill.svg', alt: 'Delete hashtag'), admin_hashtag_path(hashtag), data: { confirm: 'Are you sure?' }, method: :delete
