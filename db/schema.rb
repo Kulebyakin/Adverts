@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_26_132301) do
+ActiveRecord::Schema.define(version: 2021_09_07_155006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,21 @@ ActiveRecord::Schema.define(version: 2021_08_26_132301) do
     t.index ["category_id"], name: "index_categorisations_on_category_id"
   end
 
+  create_table "hashtagisations", force: :cascade do |t|
+    t.bigint "advert_id", null: false
+    t.bigint "hashtag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["advert_id"], name: "index_hashtagisations_on_advert_id"
+    t.index ["hashtag_id"], name: "index_hashtagisations_on_hashtag_id"
+  end
+
+  create_table "hashtags", force: :cascade do |t|
+    t.string "title", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -97,5 +112,7 @@ ActiveRecord::Schema.define(version: 2021_08_26_132301) do
   add_foreign_key "categories", "categories", column: "parent_category_id"
   add_foreign_key "categorisations", "adverts"
   add_foreign_key "categorisations", "categories"
+  add_foreign_key "hashtagisations", "adverts"
+  add_foreign_key "hashtagisations", "hashtags"
   add_foreign_key "users", "roles"
 end
