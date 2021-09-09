@@ -3,7 +3,7 @@ class Advert < ApplicationRecord
   belongs_to :user
   has_many :categorisation, dependent: :destroy
   has_many :categories, through: :categorisation
-  has_many :hashtagisations
+  has_many :hashtagisation
   has_many :hashtags, through: :hashtagisation
 
   default_scope { order(updated_at: :desc) }
