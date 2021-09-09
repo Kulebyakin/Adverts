@@ -13,6 +13,10 @@ h3.mb-4 = @advert.title
       strong Status: 
       = @advert.status
     p
+      strong Hashtag: 
+      - @advert.hashtags.each do |hashtag|
+        = hashtag.title
+    p
       strong Category: 
       = @advert.categories.pick(:title)
 

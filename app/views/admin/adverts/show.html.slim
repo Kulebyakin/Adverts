@@ -10,7 +10,14 @@ p.py-4
 p
   strong Status: 
   = @advert.status
-
-= link_to 'Accept', admin_accept_advert_path(@advert), class: "btn btn-success me-2"
-= link_to 'Reject', admin_reject_advert_path(@advert), class: "btn btn-danger me-2"
+p
+  strong Hashtag: 
+  - @advert.hashtags.each do |hashtag|
+    = hashtag.title
+p
+  strong Category: 
+  = @advert.categories.pick(:title)
+- if @advert.new?
+  = link_to 'Accept', admin_accept_advert_path(@advert), class: "btn btn-success me-2"
+  = link_to 'Reject', admin_reject_advert_path(@advert), class: "btn btn-danger me-2"
 .my-2 = link_to 'Back', admin_adverts_path, class: "btn btn-secondary"
