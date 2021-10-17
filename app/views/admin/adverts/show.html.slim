@@ -10,10 +10,11 @@ p.py-4
 p
   strong Status: 
   = @advert.status
-p
-  strong Hashtag: 
-  - @advert.hashtags.each do |hashtag|
-    = hashtag.title
+- if @advert.hashtags.present?
+  p
+    strong Hashtag: 
+    - @advert.hashtags.each do |hashtag|
+      => "##{hashtag.title}"
 p
   strong Category: 
   = @advert.categories.pick(:title)
