@@ -12,10 +12,11 @@ h3.mb-4 = @advert.title
     p
       strong Status: 
       = @advert.status
-    p
-      strong Hashtag: 
-      - @advert.hashtags.each do |hashtag|
-        = hashtag.title
+    - if @advert.hashtags.present?
+      p
+        strong Hashtag: 
+        - @advert.hashtags.each do |hashtag|
+          => link_to "##{hashtag.title}", hashtag_path(hashtag)
     p
       strong Category: 
       = @advert.categories.pick(:title)
